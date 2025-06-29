@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Maven Pro', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+#notfound {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.notfound {
+  max-width: 920px;
+  width: 100%;
+  padding: 20px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.notfound .notfound-404 h1 {
+  color: #ececec;
+  font-weight: 900;
+  font-size: 200px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  animation: bounceIn 1s;
+}
+
+.notfound h2 {
+  font-size: 48px;
+  color: #333;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 20px 0 10px;
+}
+
+.notfound p {
+  font-size: 18px;
+  color: #666;
+  margin: 15px 0 30px;
+}
+
+.notfound a {
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #189cf0;
+  display: inline-block;
+  padding: 14px 32px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(24, 156, 240, 0.3);
+}
+
+.notfound a:hover {
+  background-color: #fff;
+  border-color: #189cf0;
+  color: #189cf0;
+  box-shadow: 0 4px 10px rgba(24, 156, 240, 0.5);
+}
+
+/* Responsive Styling */
+@media only screen and (max-width: 768px) {
+  .notfound .notfound-404 h1 {
+    font-size: 140px;
+  }
+  .notfound h2 {
+    font-size: 32px;
+  }
+  .notfound p {
+    font-size: 16px;
+  }
+  .notfound a {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+/* Simple Fade and Bounce Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { transform: translate(-50%, -50%) scale(0.9); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
