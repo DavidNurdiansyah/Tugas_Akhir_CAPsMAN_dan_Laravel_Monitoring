@@ -80,10 +80,10 @@ class ReportController extends Controller
                 }
 
 
-                return response()->json(['status' => 'success', 'mbps' => $total_mbps]);
+                return response()->json(['mbps' => $total_mbps]);
             }
         }
 
-        return response()->json(['status' => 'error', 'message' => 'Gagal ambil trafik'], 500);
+        return response()->json(['message' => 'Gagal ambil trafik'], 500);
     }
 }

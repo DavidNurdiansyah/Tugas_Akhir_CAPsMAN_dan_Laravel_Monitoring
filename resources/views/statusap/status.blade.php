@@ -58,7 +58,6 @@
                                                                 isset($st['identity']) &&
                                                                 trim($st['identity']) === trim($data['name'])
                                                             ) {
-                                                                // Perbaikan: lowercase-kan state
                                                                 $isOnline =
                                                                     isset($st['state']) &&
                                                                     strtolower($st['state']) === 'run';

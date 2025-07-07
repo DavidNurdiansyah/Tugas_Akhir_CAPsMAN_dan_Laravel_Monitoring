@@ -23,7 +23,6 @@ class RouterosAPI extends Model
     var $error_no;          //  Variable for storing connection error number, if any
     var $error_str;         //  Variable for storing connection error text, if any
 
-    /* Check, can be var used in foreach  */
     public function isIterable($var)
     {
         return $var !== null
@@ -34,13 +33,7 @@ class RouterosAPI extends Model
             );
     }
 
-    /**
-     * Print text for debug purposes
-     *
-     * @param string      $text       Text to print
-     *
-     * @return void
-     */
+
     public function debug($text)
     {
         if ($this->debug) {
@@ -48,14 +41,6 @@ class RouterosAPI extends Model
         }
     }
 
-
-    /**
-     *
-     *
-     * @param string        $length
-     *
-     * @return void
-     */
     public function encodeLength($length)
     {
         if ($length < 0x80) {
@@ -77,15 +62,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Login to RouterOS
-     *
-     * @param string      $ip         Hostname (IP or domain) of the RouterOS server
-     * @param string      $login      The RouterOS username
-     * @param string      $password   The RouterOS password
-     *
-     * @return boolean                If we are connected or not
-     */
     public function connect($ip, $login, $password)
     {
         for ($ATTEMPT = 1; $ATTEMPT <= $this->attempts; $ATTEMPT++) {
@@ -137,15 +113,8 @@ class RouterosAPI extends Model
         return $this->connected;
     }
 
-
-    /**
-     * Disconnect from RouterOS
-     *
-     * @return void
-     */
     public function disconnect()
     {
-        // let's make sure this socket is still valid.  it may have been closed by something else
         if (is_resource($this->socket)) {
             fclose($this->socket);
         }
@@ -154,13 +123,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Parse response from Router OS
-     *
-     * @param array       $response   Response data
-     *
-     * @return array                  Array with parsed data
-     */
     public function parseResponse($response)
     {
         if (is_array($response)) {
@@ -196,13 +158,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Parse response from Router OS
-     *
-     * @param array       $response   Response data
-     *
-     * @return array                  Array with parsed data
-     */
     public function parseResponse4Smarty($response)
     {
         if (is_array($response)) {
@@ -239,13 +194,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Change "-" and "/" from array key to "_"
-     *
-     * @param array       $array      Input array
-     *
-     * @return array                  Array with changed key names
-     */
     public function arrayChangeKeyName(&$array)
     {
         if (is_array($array)) {
@@ -265,27 +213,14 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Read data from Router OS
-     *
-     * @param boolean     $parse      Parse the data? default: true
-     *
-     * @return array                  Array with parsed or unparsed data
-     */
     public function read($parse = true)
     {
         $RESPONSE     = array();
         $receiveddone = false;
         while (true) {
-            // Read the first byte of input which gives us some or all of the length
-            // of the remaining reply.
+
             $BYTE   = ord(fread($this->socket, 1));
             $LENGTH = 0;
-            // If the first bit is set then we need to remove the first four bits, shift left 8
-            // and then read another byte in.
-            // We repeat this for the second and third bits.
-            // If the fourth bit is set, we need to remove anything left in the first byte
-            // and then read in yet another byte.
             if ($BYTE & 128) {
                 if (($BYTE & 192) == 128) {
                     $LENGTH = (($BYTE & 63) << 8) + ord(fread($this->socket, 1));
@@ -348,17 +283,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Write (send) data to Router OS
-     *
-     * @param string      $command    A string with the command to send
-     * @param mixed       $param2     If we set an integer, the command will send this data as a "tag"
-     *                                If we set it to boolean true, the funcion will send the comand and finish
-     *                                If we set it to boolean false, the funcion will send the comand and wait for next command
-     *                                Default: true
-     *
-     * @return boolean                Return false if no command especified
-     */
     public function write($command, $param2 = true)
     {
         if ($command) {
@@ -383,14 +307,6 @@ class RouterosAPI extends Model
     }
 
 
-    /**
-     * Write (send) data to Router OS
-     *
-     * @param string      $com        A string with the command to send
-     * @param array       $arr        An array with arguments or queries
-     *
-     * @return array                  Array with parsed
-     */
     public function comm($com, $arr = array())
     {
         $count = count($arr);
@@ -418,11 +334,7 @@ class RouterosAPI extends Model
         return $this->read();
     }
 
-    /**
-     * Standard destructor
-     *
-     * @return void
-     */
+
     public function __destruct()
     {
         $this->disconnect();

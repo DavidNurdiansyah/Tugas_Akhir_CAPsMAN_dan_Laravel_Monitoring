@@ -27,15 +27,6 @@
                                 </div>
                             </div>
 
-                            <!-- Modal Add (optional if needed) -->
-                            <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <!-- Tambahkan isi modal jika perlu -->
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Table -->
                             <div class="table-responsive">
                                 <table id="macTable" class="display table table-striped table-hover">
