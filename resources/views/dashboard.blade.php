@@ -21,8 +21,7 @@
                             </div>
                             <div class="form-group" id="traffic"></div>
                             <div class="form-group">
-                                {{-- Jumlah Access Point : # <br>
-                                Access Point Online : # --}}
+
                                 Jumlah Access Point : {{ $totalap }} <br>
                                 Access Point Online : {{ $status }}
 
@@ -34,8 +33,7 @@
             </div>
         </div>
 
-        {{-- footer --}}
-        {{-- @include('layout.footer') --}}
+
     </div>
     <div id="response-wrapper" style="display:none;"></div>
 
@@ -81,7 +79,7 @@
         console.log("Plotly initialized", timeData, rxData, txData);
 
 
-        setInterval(traffic, 1000); // Update setiap 1 detik
+        setInterval(traffic, 1000);
 
 
         function traffic() {
@@ -91,7 +89,7 @@
 
             $.get(fullUrl, function(response) {
                 try {
-                    // TEMPATKAN response ke dalam div dummy
+
                     $('#response-wrapper').html(response);
 
                     var rx = $('#response-wrapper').find('#rx').text().trim();
@@ -125,7 +123,7 @@
                         y: [rxData, txData]
                     });
 
-                    // Update tampilan
+
                     $('#traffic').html(response);
 
                 } catch (error) {

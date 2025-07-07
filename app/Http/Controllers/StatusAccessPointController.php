@@ -29,6 +29,5 @@ class StatusAccessPointController extends Controller
         } else {
             return redirect()->route('failed');
         }
-        // return view('statusap.status');
     }
 }

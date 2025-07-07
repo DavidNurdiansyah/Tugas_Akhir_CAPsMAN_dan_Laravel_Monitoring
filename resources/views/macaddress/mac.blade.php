@@ -73,9 +73,6 @@
                                 <button id="prevBtn" class="btn btn-secondary">Previous</button>
                                 <button id="nextBtn" class="btn btn-secondary">Next</button>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>

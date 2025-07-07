@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Report;
+
 use App\Models\RouterosAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -20,12 +20,12 @@ class DashboardController extends Controller
         if ($API->connect($ip, $user, $pw)) {
             $cap = $API->comm('/caps-man/interface/print');
             $status = $API->comm('/caps-man/remote-cap/print');
-
             $data = [
                 'cap' => $cap,
                 'totalap' => count($cap),
                 'status' => count($status)
             ];
+
 
             return view('dashboard', $data);
         } else {

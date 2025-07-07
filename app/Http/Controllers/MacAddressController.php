@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MacAddress;
 use App\Models\RouterosAPI;
 use Illuminate\Http\Request;
 
